@@ -6,8 +6,8 @@ const CourseSchema = new Schema({
     title: String,
     desc: String,
     price: Number,
-    OwnByTeacher: { type: Schema.Types.ObjectId, ref: 'User'},
-    OwnByStudent: [{ 
+    teacherModule: { type: Schema.Types.ObjectId, ref: 'User'},
+    takenByStudent: [{ 
         user: {type: Schema.Types.ObjectId, ref: 'User'},
         }],
     totalStudents: Number

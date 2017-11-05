@@ -23,7 +23,7 @@ module.exports = (app)=>{
                
 
                 Course.findOne({_id: req.params.id})
-                .populate('OwnByStudent.user')
+                .populate('takenByStudent.user')
                 .exec(function(err, foundCourse){
                     callback(err, foundCourse);
                 });

@@ -32,10 +32,10 @@ module.exports = (app)=>{
                             function(callback) {
                                 Course.update({
                                     _id: courseId,
-                                    'OwnByStudent.user': {$ne: req.user._id} 
+                                    'takenByStudent.user': {$ne: req.user._id} 
                                 },
                                 {
-                                $push: { OwnByStudent: { user: req.user._id}},
+                                $push: { takenByStudent: { user: req.user._id}},
                                 $inc: { totalStudents: 1}
                                 }, function(err, count){
                                     if(err) return next(err);
@@ -60,7 +60,7 @@ module.exports = (app)=>{
                             function(callback){
                                 User.update(
                                    {
-                                       _id: foundCourse.OwnByTeacher
+                                       _id: foundCourse.teacherModule
                                    },
                                    {
                                     $push: { revenue: { money: foundCourse.price}},
