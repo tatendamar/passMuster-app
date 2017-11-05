@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const Course = require('../models/course');
-const stripe = require('stripe')(sk_test_YuE35elVpwiBFnaz4uJB3el8);
+const stripe = require('stripe')('sk_test_YuE35elVpwiBFnaz4uJB3el8');
 const async = require('async');
 
 module.exports = (app)=>{
