@@ -1,5 +1,6 @@
 const Course = require('../models/course');
 const User = require('../models/user');
+const  keys = require('../config/keys');
 
 const async = require('async');
 
@@ -49,7 +50,7 @@ module.exports = (app)=>{
             const UserCourse = results[1];
             const teacherCourse = results[2];
             if(UserCourse === null && teacherCourse === null){
-                res.render('courses/courseDesc',{ course: course});
+                res.render('courses/courseDesc',{ course: course},{ stripePublishableKey: keys.stripePublishableKey});
 
             } else if(UserCourse === null && teacherCourse != null){
                 res.render('courses/course', { course: course});
