@@ -7,13 +7,94 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-offset-3">
-            <h1>Create Course</h1>
+            <h1>Application</h1>
+              
+
             <form role="form" method="POST">
+             <fieldset>
+                <legend>Module</legend>
               <div class="form-group">
-                  <label for="name">Title:</label>
+                  <label for="title">Title:</label>
+                  <span id="errorMsg1"></span>
                   <input type="text" class="form-control" name="title" id="title">
+                </div>
+             </fieldset>
+              <fieldset>
+                    <legend>Personal Details</legend>
+              <div class="form-group">
+                <label for="address">Address</label>
+                <span id="errorMsg2"></span>
+                <input type="text" class="form-control" id="address"
+                       name="address1" placeholder="1234 Main St">
               </div>
-              <button type="submit" class="btn btn-success">Submit</button>
+              <div class="form-row">
+               <div class="form-group col-md-6">
+                 <label for="mobile">Mobile Phone Number</label>
+                 <span id="errorMsg3"></span>
+                 <input type="tel" class="form-control" name="mobile" id="mobile">
+               </div>
+                <div class="form-group col-md-6">
+                  <label for="city">City</label>
+                  <span id="errorMsg4"></span>
+                  <input type="text" class="form-control" name="city" id="city">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="area">Area</label>
+                  <span id="errorMsg5"></span>
+                  <select id="area" class="form-control" name="area">
+                    <option selected></option>
+                    <option value="bluffhill">BluffHill</option>
+                    <option value="mtpleasant">MtPleasant</option>
+                    <option value="glenview">Glen View</option>
+                    <option value="chitungwiza">Chitungwiza</option>
+                  </select>
+                  </div>
+                  </div>
+                </fieldset>
+                <fieldset>
+                 <legend>Work Experience</legend>
+                 <div class="form-group">
+                        <label for="school">Current School:</label>
+                        <span id="errorMsg6"></span>
+                        <input type="text" class="form-control" name="school" id="school">
+                    </div>
+                  <div class="form-group col-md-6">
+                   <label for="level">What Level Do You Tutor?:</label>
+                   <span id="errorMsg7"></span>
+                   <select id="level" class="form-control" name="level">
+                     <option selected></option>
+                     <optgroup label="Grade: 1 - 7">
+                      <option value="grade 1">Grade 1</option>
+                      <option value="grade 2">Grade 2</option>
+                      <option value="grade 3">Grade 3</option>
+                      <option value="grade 4">Grade 4</option>
+                      <option value="grade 5">Grade 5</option>
+                      <option value="grade 6">Grade 6</option>
+                      <option value="grade 7">Grade 7</option>                   
+                    </optgroup>
+                    <optgroup label="Form 1 - 6">
+                      <option value="Form 1">Form 1</option>
+                      <option value="Form 2">Form 2</option>
+                      <option value="Form 3">Form 3</option>
+                      <option value="Form 4">Form 4</option>
+                      <option value="Form 5">Form 5</option>
+                      <option value="Form 6">Form 6</option>                  
+                      </optgroup>
+                      <option value="college">College</option>
+                    </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="years">How Long Have You Been a Teacher?:</label>
+                      <span id="errorMsg8"></span>
+                       <select id="years" class="form-control" name="years">
+                         <option selected></option>
+                         <option value="years 0-5">0 - 5 Years</option>
+                         <option value="above 5"> Above 5 Years</option>                  
+                        </select>
+                        </div>
+                </fieldset>
+
+              <button type="submit" id="apply" class="btn btn-success">Submit</button>
             </form>
         </div>
     </div>

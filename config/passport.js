@@ -2,6 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 
+
 const User = require('../models/user');
 const configAuth = require('./auth');
 
@@ -25,6 +26,8 @@ module.exports = (passport)=>{
         passReqToCallback: true
     },
     function(req, email, password,done){
+     
+
         process.nextTick(()=>{
             //async
             User.findOne({'local.email' : email},(err, user)=>{
@@ -34,10 +37,12 @@ module.exports = (passport)=>{
             
                     return done(null, false, req.flash('signupMessage', 'Email already teken')); 
                 } 
-                 if(!req.user) {
+                 if(!req.user) {       
                     const newUser = new User();
                     newUser.local.email =  email;
                     newUser.local.password = newUser.generateHash(password);
+                     
+                  
 
                     newUser.save((err)=>{
                           if(err)
@@ -74,7 +79,7 @@ module.exports = (passport)=>{
               if(err)
               return done(err);
 
-               // if the user is ot found, then show login error
+               // if the user is not found, then show login error
               if(!user)
               return done (null, false, req.flash('loginMessage', 'No user found'));
              

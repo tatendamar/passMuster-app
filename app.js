@@ -1,15 +1,16 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const mongoose = require('mongoose');
-const ejs = require('ejs');
-const engine = require('ejs-mate');
-const passport = require('passport');
+const express       = require('express');
+const bodyParser    = require('body-parser');
+const morgan        = require('morgan');
+const mongoose      = require('mongoose');
+const ejs           = require('ejs');
+const engine        = require('ejs-mate');
+const passport      = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-const cookieParser = require('cookie-parser');
-const flash = require('connect-flash');
+const session       = require('express-session');
+const MongoStore    = require('connect-mongo')(session);
+const cookieParser  = require('cookie-parser');
+const flash         = require('connect-flash');
+const expressValidator = require('express-validator');
 
 const app = express();
 
@@ -28,6 +29,7 @@ mongoose.connect(secret.database, {useMongoClient: true},  (err)=>{
   //setting up all the libraries 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(expressValidator());
 app.engine('ejs', engine);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"))

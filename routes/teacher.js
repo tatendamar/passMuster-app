@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Course = require('../models/course');
+const expressValidator = require('express-validator');
 
 var async = require('async');
 
@@ -13,10 +14,17 @@ module.exports = (app)=>{
     })
 
     .post((req, res, next)=>{
+           
        async.waterfall([
            function(callback){
                const course = new Course();
                course.title = req.body.title;
+               course.address = req.body.address;
+               course.city = req.body.city;
+               course.area = req.body.area;
+               course.mobile = req.body.mobile;
+               course.level = req.body.level;
+
                course.save((err)=>{
                    callback(err, course);
                });
@@ -47,7 +55,15 @@ module.exports = (app)=>{
         });
     });
 
-      app.route('/become-an-instructor')
+
+}
+
+
+
+
+/*
+
+app.route('/become-an-instructor')
 
     .get((req, res, next)=>{
       res.render('teacher/become-instructor');
@@ -87,6 +103,4 @@ module.exports = (app)=>{
 
             res.render('teacher/revenue-report', { revenue: revenue });
         });
-    });
-
-}
+    });*/

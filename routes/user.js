@@ -1,6 +1,7 @@
 const passport = require('passport');
 const passportConfig = require('../config/passport');
 const LocalStrategy = require('passport-local').Strategy;
+const expressValidator = require('express-validator');
 
 //include User model
 const User = require('../models/user');
@@ -10,7 +11,7 @@ module.exports = (app)=>{
 
     //render login form
     app.get('/login', (req, res, next)=>{
-      res.render("accounts/login", { message: req.flash('loginMessage')});
+      res.render("accounts/login", {title: 'Login', message: req.flash('loginMessage')});
     });
 
      //handle local-login post route
@@ -21,7 +22,7 @@ module.exports = (app)=>{
     }));
 
   app.get('/register',(req, res, next)=>{
-      res.render('accounts/register', { message: req.flash('signupMessage')});
+      res.render('accounts/register', {title: 'Registration', message: req.flash('signupMessage')});
   });
       
    //handle local register by posting the information to the server
