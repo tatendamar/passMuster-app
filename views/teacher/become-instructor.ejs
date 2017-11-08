@@ -14,33 +14,39 @@
              <fieldset>
                 <legend>Module</legend>
               <div class="form-group">
-                  <label for="title">Title:</label>
-                  <span id="errorMsg1"></span>
+                  <label for="title">Title:</label>               
                   <input type="text" class="form-control" name="title" id="title">
+                  <p id="title-error">This field is required</p>
+                </div>
+                <div class="form-group">
+                  <label for="desc">Bio:</label>
+                  <textarea id="bio" name="desc">
+                        
+                  </textarea>
+                  <p id="desc-error">This field is required</p>
                 </div>
              </fieldset>
               <fieldset>
                     <legend>Personal Details</legend>
               <div class="form-group">
                 <label for="address">Address</label>
-                <span id="errorMsg2"></span>
                 <input type="text" class="form-control" id="address"
-                       name="address1" placeholder="1234 Main St">
+                       name="address" placeholder="1234 Main St">
+                 <p id="address-error">This field is required</p>      
               </div>
               <div class="form-row">
                <div class="form-group col-md-6">
                  <label for="mobile">Mobile Phone Number</label>
-                 <span id="errorMsg3"></span>
                  <input type="tel" class="form-control" name="mobile" id="mobile">
-               </div>
+                 <p id="mobile-error">This field is required</p>
+                </div>
                 <div class="form-group col-md-6">
                   <label for="city">City</label>
-                  <span id="errorMsg4"></span>
                   <input type="text" class="form-control" name="city" id="city">
+                  <p id="city-error">This field is required</p>
                 </div>
                 <div class="form-group col-md-4">
                   <label for="area">Area</label>
-                  <span id="errorMsg5"></span>
                   <select id="area" class="form-control" name="area">
                     <option selected></option>
                     <option value="bluffhill">BluffHill</option>
@@ -48,6 +54,7 @@
                     <option value="glenview">Glen View</option>
                     <option value="chitungwiza">Chitungwiza</option>
                   </select>
+                  
                   </div>
                   </div>
                 </fieldset>
@@ -55,8 +62,8 @@
                  <legend>Work Experience</legend>
                  <div class="form-group">
                         <label for="school">Current School:</label>
-                        <span id="errorMsg6"></span>
                         <input type="text" class="form-control" name="school" id="school">
+                        <p id="school-error">This field is required</p>
                     </div>
                   <div class="form-group col-md-6">
                    <label for="level">What Level Do You Tutor?:</label>
@@ -94,7 +101,7 @@
                         </div>
                 </fieldset>
 
-              <button type="submit" id="apply" class="btn btn-success">Submit</button>
+              <button type="submit" id="apply" class="btn btn-success" disabled>Submit</button>
             </form>
         </div>
     </div>

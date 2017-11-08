@@ -12,10 +12,19 @@ const CourseSchema = new Schema({
     area: String,
     desc: String,
     price: Number,
-    teacherModule: { type: Schema.Types.ObjectId, ref: 'User'},
-    takenByStudent: [{ 
+    teacherModule: 
+              {
+         type: Schema.Types.ObjectId, ref: 'User'
+              },
+    takenByStudent: [
+        { 
         user: {type: Schema.Types.ObjectId, ref: 'User'},
         }],
+    comments: [
+        {
+       comment:{type: Schema.Types.ObjectId, ref: 'Comment'},
+
+    }],
     totalStudents: Number
 });
 

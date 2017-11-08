@@ -57,7 +57,7 @@ require('./routes/main')(app, passport);
 require('./routes/user')(app, passport);
 require('./routes/teacher')(app);
 require('./routes/stripepayment')(app);
-
+require('./routes/comments')(app);
 
 //setup port environmnet
   app.set('port', (process.env.PORT || secret.port));

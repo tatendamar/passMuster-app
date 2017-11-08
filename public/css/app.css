@@ -15,3 +15,9 @@ fieldset{
 legend{
   border-bottom: none;
 }
+#title-error, #email-error, #password-error,#passwordRe-error,
+#address-error, #mobile-error,#city-error,#school-error,#desc-error{
+  color: #d9534f;
+  padding: 12px;
+  display: none;
+}

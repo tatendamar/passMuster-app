@@ -27,7 +27,7 @@ module.exports = (app)=>{
       
    //handle local register by posting the information to the server
   app.post('/register',passport.authenticate('local-signup',{
-    successRedirect: '/',
+    successRedirect: '/profile',
     failureRedirect: '/register',
     failureFlash: true
    }));

@@ -1,6 +1,7 @@
 const Course = require('../models/course');
 const User = require('../models/user');
-const  keys = require('../config/keys');
+const keys = require('../config/keys');
+const Comment = require('../models/comment');
 
 const async = require('async');
 
@@ -24,12 +25,13 @@ module.exports = (app)=>{
                
 
                 Course.findOne({_id: req.params.id})
-                .populate('takenByStudent.user')
+                .populate('takenByStudent.user, comments.comment')
                 .exec(function(err, foundCourse){
                     callback(err, foundCourse);
                 });
             },
 
+          
             function(callback){
              User.findOne({_id: req.user._id, 'coursesTaken.course': req.params.id})
              .populate('coursesTaken.course')
@@ -37,6 +39,8 @@ module.exports = (app)=>{
                  callback(err, foundUserCourse);
              });
             },
+
+              
 
             function(callback){
                 User.findOne({_id: req.user._id, 'coursesTeach.course': req.params.id})

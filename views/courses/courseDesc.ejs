@@ -13,18 +13,18 @@
                    data-amount="<%= course.price %>"
                    data-name= "stripe.com"
                    data-description="widget"
-                   data-lacale="auto">
-
-
-                    
+                   data-lacale="auto">              
                     </script>
-
                  </form>
-
             </div>
         </div>
-
-        <p><%= course.title %></p>
+       <div class="container">
+           <div class="row">
+                <div class="col-lg-5">               
+                 <h3><%= course.title %></h3>
+              </div> 
+           </div>
+       </div>
     </div>
 </div>
 
@@ -35,8 +35,8 @@
           <%= course.desc %>
       </div>
 
-      <div class="col-lg-5">
-            <h2>Enroll Students</h2>
+      <div class="col-lg-2">
+            <h2>Enrolled Students</h2>
            <div class="panel panel-default">
               <div class="panel-heading">
                   Students
@@ -55,6 +55,15 @@
                 <% } %>
              </div>
            </div>
+        </div>
+        <div class="col-lg-3">
+         <div class="panel panel-default">
+             <div class="panel-heading">
+               <% course.comments.forEach(function(comment){ %>
+                     <strong><%= comment.author %></strong> - <%= comment.text %>   
+              <% }) %>          
+            </div> 
+         
         </div>
 
   </div>
