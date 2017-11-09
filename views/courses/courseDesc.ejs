@@ -1,27 +1,10 @@
 <% layout('boilerplate') %>
 
-<div class="jumbtron">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-3">
-            
-                 <form action="/payment" method="POST">
-                    <input type="hidden" name="courseId" value="<%= course._id %>">
-                   <script
-                   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                   data-key=""
-                   data-amount="<%= course.price %>"
-                   data-name= "stripe.com"
-                   data-description="widget"
-                   data-lacale="auto">              
-                    </script>
-                 </form>
-            </div>
-        </div>
        <div class="container">
            <div class="row">
                 <div class="col-lg-5">               
                  <h3><%= course.title %></h3>
+                  <h4><%= course.username %></h4>
               </div> 
            </div>
        </div>
@@ -36,7 +19,7 @@
       </div>
 
       <div class="col-lg-2">
-            <h2>Enrolled Students</h2>
+            <h3>Enrolled Students</h3>
            <div class="panel panel-default">
               <div class="panel-heading">
                   Students
@@ -57,10 +40,18 @@
            </div>
         </div>
         <div class="col-lg-3">
-         <div class="panel panel-default">
-             <div class="panel-heading">
+         <h3>Comments</h3>
+         <p>
+             <a class="btn btn-success" href="/courses/<%=course._id%>/comments/new">Add New Comment</a>
+         </p>
+         <div class="panel panel-default">      
                <% course.comments.forEach(function(comment){ %>
-                     <strong><%= comment.author %></strong> - <%= comment.text %>   
+                <div class="panel-heading">
+                     <strong><%= comment.author %></strong>
+                     </div> 
+                     <div class="panel-body">
+                      <%= comment.text %> 
+                     </div>  
               <% }) %>          
             </div> 
          
@@ -68,3 +59,85 @@
 
   </div>
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7">
+     <!-- <h3>Acme Web Design</h3>
+        <ul>
+          <li><i class="fa fa-road"></i> 44 Something st</li>
+         <li><i class="fa fa-phone"></i> (555) 555-5555</li>
+         <li><i class="fa fa-envelope"></i> test@acme.test</li>
+         </ul>
+      </div>-->
+      <div class="contact">
+         <h3>About You</h3>
+        
+            <form action="/courses" method="POST">
+                <p>
+                  <label>Title:</label>
+                    <input type="text" name="title">
+              </p>
+              <p>
+                <label>First Name</label>
+                <input type="text" name="firstname">
+              </p>
+              <p>
+                <label>Last Name</label>
+                <input type="text" name="lastname">
+              </p>
+              <p>
+                <label>Address</label>
+                <input type="text" name="address">
+              </p>
+              <p>
+                <label>City</label>
+                <input type="text" name="city">
+              </p>
+              <p>
+               <label>Phone</label>
+                 <input type="text" name="phone">
+               </p>
+               <p>
+                <label>School</label>
+                 <input type="text" name="school">
+                </p>
+                <p>
+                 <label>Area</label>
+                   <input type="text" name="area">
+                </p>
+                <p>
+                 <label>Level</label>
+                  <input type="text" name="level">
+                 </p>    
+                 <p class="full">
+                     <button type="submit" class="btn btn-success" disabled>Complete Secrching For A Tutor </button>
+                 </p>
+            </form>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+         <br>
+      <div class="jumbtron">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-4">
+                    
+                         <form action="/payment" method="POST">
+                            <input type="hidden" name="courseId" value="<%= course._id %>">
+                           <script
+                           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                           data-key=""
+                           data-amount="2500" 
+                           data-name= "passMuster.com"
+                           data-description="widget"
+                           data-lacale="auto">              
+                            </script>
+                            
+                         </form>
+                    </div>
+                </div>
+
+                <!--<%= course.price %> -->

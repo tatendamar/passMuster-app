@@ -5,6 +5,10 @@ const stripe = require('stripe')(keys.stripeSecretKey);
 const async = require('async');
 
 module.exports = (app)=>{
+
+    app.get('/courses',(req, res)=>{
+        res.render('', {stripePublishableKey: keys.stripePublishableKey})
+    })
  
      app.post('/payment', (req, res, next)=>{
          const stripeToken = req.body.stripeToken;

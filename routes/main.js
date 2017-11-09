@@ -5,7 +5,7 @@ const Comment = require('../models/comment');
 
 const async = require('async');
 
-
+//courses main routes
 
 module.exports = (app)=>{
 
@@ -18,38 +18,35 @@ module.exports = (app)=>{
             res.render('courses/courses', { courses: courses});
         })
     });
-
+   
+   //query the database async 
     app.get('/courses/:id', (req, res, next)=>{
         async.parallel([
-            function(callback){
-               
-
+            function(callback){ //callback when this function is done
+    
                 Course.findOne({_id: req.params.id})
                 .populate('takenByStudent.user, comments.comment')
                 .exec(function(err, foundCourse){
                     callback(err, foundCourse);
                 });
             },
-
-          
-            function(callback){
+    
+            function(callback){ //callback when this function is done
              User.findOne({_id: req.user._id, 'coursesTaken.course': req.params.id})
              .populate('coursesTaken.course')
              .exec((err, foundUserCourse)=>{
                  callback(err, foundUserCourse);
              });
-            },
+            },           
 
-              
-
-            function(callback){
+            function(callback){ //callback when this function is done
                 User.findOne({_id: req.user._id, 'coursesTeach.course': req.params.id})
                 .populate('coursesTeach.course')
                 .exec((err, foundUserCourse)=>{
                     callback(err, foundUserCourse);
                 });
                },
-        ], function(err, results){
+        ], function(err, results){  //get results from each callback and do some logic with the results
             const course = results[0];
             const UserCourse = results[1];
             const teacherCourse = results[2];
@@ -64,5 +61,34 @@ module.exports = (app)=>{
 
         });
     });
-    
+   /* app.post('/courses',(req,res)=>{
+        async.waterfall([
+            function(callback){
+                const course = new Course();
+                course.title = req.body.title;
+                course.firstname = req.body.firstname;
+                course.lastname = req.body.lastname;
+                course.address = req.body.address;
+                course.city = req.body.city;
+                course.area = req.body.area;
+                course.mobile = req.body.mobile;
+                course.level = req.body.level;
+ 
+                course.save((err)=>{
+                    callback(err, course);
+                });
+            },
+ 
+            function(course, callback){
+                User.findOne({_id: req.user._id}, (err, foundUser)=>{
+                    foundUser.coursesTaken.push({ course: course._id});
+                    foundUser.save((err)=>{
+                        if(err)
+                         return next(err);
+                         res.redirect('/courses');
+                    });
+                });
+            }
+        ]);
+     });*/
 }

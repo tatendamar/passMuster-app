@@ -19,6 +19,7 @@ module.exports = (app)=>{
            function(callback){
                const course = new Course();
                course.title = req.body.title;
+               course.username = req.body.username
                course.desc = req.body.desc;
                course.address = req.body.address;
                course.city = req.body.city;
@@ -56,7 +57,16 @@ module.exports = (app)=>{
         });
     });
 
-
+//revenue report route
+    app.get('/revenue-report', (req, res)=>{
+        var revenue = 0;
+        User.findOne({_id: req.user._id}, (err, foundUser)=>{
+            foundUser.revenue.forEach(function(value){
+               revenue += value; 
+            });
+            res.render('teacher/revenue-report', {revenue: revenue})
+        });
+    });
 }
 
 

@@ -11,6 +11,7 @@ const MongoStore    = require('connect-mongo')(session);
 const cookieParser  = require('cookie-parser');
 const flash         = require('connect-flash');
 const expressValidator = require('express-validator');
+const nodemailer     = require('nodemailer');
 
 const app = express();
 

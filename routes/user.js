@@ -16,7 +16,7 @@ module.exports = (app)=>{
 
      //handle local-login post route
     app.post('/login',passport.authenticate('local-login',{
-        successRedirect: 'profile',
+        successRedirect: '/courses',
         failureRedirect: '/login',
         failureFlash: true
     }));
@@ -27,7 +27,7 @@ module.exports = (app)=>{
       
    //handle local register by posting the information to the server
   app.post('/register',passport.authenticate('local-signup',{
-    successRedirect: '/profile',
+    successRedirect: '/courses',
     failureRedirect: '/register',
     failureFlash: true
    }));
@@ -43,7 +43,7 @@ module.exports = (app)=>{
        // handle the callback after facebook has authenticated the user
    app.get('/auth/facebook/callback',
            passport.authenticate('facebook', {
-               successRedirect : '/profile',
+               successRedirect : '/courses',
                failureRedirect : '/'
            }));
 
@@ -54,7 +54,7 @@ module.exports = (app)=>{
     });
 
     app.post('/connect/local', passport.authenticate('local-signup',{
-        successRedirect: '/profile',
+        successRedirect: '/courses',
         failureRedirect: '/connect/local',
         failureFlash: true
     }));
