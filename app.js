@@ -10,14 +10,14 @@ const session       = require('express-session');
 const MongoStore    = require('connect-mongo')(session);
 const cookieParser  = require('cookie-parser');
 const flash         = require('connect-flash');
-const expressValidator = require('express-validator');
-const nodemailer     = require('nodemailer');
+
 
 const app = express();
 
 const secret = require('./config/secret');
 require('./config/passport')(passport);
 
+//setting up the database
 mongoose.connect(secret.database, {useMongoClient: true},  (err)=>{
     if(err){
         console.log(err)
@@ -30,7 +30,6 @@ mongoose.connect(secret.database, {useMongoClient: true},  (err)=>{
   //setting up all the libraries 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(expressValidator());
 app.engine('ejs', engine);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"))
@@ -41,9 +40,10 @@ app.use(session({
     saveUninitialized: true,
     secret: 'secret',
     store: new MongoStore({ url: secret.database }),
-    ttl: 2 * 24 * 60 * 60
+    ttl: 2 * 24 * 60 * 60 //time to leave this is the time to discard the session info
 }));
 
+//initilizing the passport module
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -60,7 +60,7 @@ require('./routes/teacher')(app);
 require('./routes/stripepayment')(app);
 require('./routes/comments')(app);
 
-//setup port environmnet
+//setup port environment
   app.set('port', (process.env.PORT || secret.port));
   
   app.listen(app.get('port'),()=>{

@@ -15,7 +15,7 @@ module.exports = (app)=>{
 
     app.get('/courses', (req, res, next)=>{
         Course.find({}, (err, courses)=>{
-            res.render('courses/courses', { courses: courses});
+            res.render('courses/courses', { courses: courses, message: req.flash('loginMessage')});
         })
     });
    

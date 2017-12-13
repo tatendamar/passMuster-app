@@ -1,7 +1,6 @@
 const passport = require('passport');
 const passportConfig = require('../config/passport');
 const LocalStrategy = require('passport-local').Strategy;
-const expressValidator = require('express-validator');
 
 //include User model
 const User = require('../models/user');

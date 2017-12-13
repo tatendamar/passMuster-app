@@ -1,6 +1,5 @@
 const User = require('../models/user');
 const Course = require('../models/course');
-const expressValidator = require('express-validator');
 
 var async = require('async');
 

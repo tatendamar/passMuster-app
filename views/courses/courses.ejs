@@ -2,8 +2,16 @@
 
 <div class="container">
     <div class="row">
+            <% if( message.length > 0){ %>
+                <div class="alert alert-success alert-dismissible">
+                  <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                   <span aria-hidden="true">&times</span>   
+                 </button> 
+                 <%= message %>
+                </div>
+                <% } %>
 
-        <h2 class="tex-center">All courses</h2>
+        <h2 class="text-center">All courses</h2>
         <hr />
          
         <% for(var i = 0; i < courses.length; i++){ %>
@@ -15,6 +23,7 @@
                     <h3><span>Course:</span><%= courses[i].title %></h3>
                     <h4><span>Tutor:</span><%= courses[i].username %></h4>
                     <p><%= courses[i].desc %></p>
+                    <a href="/teacher/dashboard" class="btn btn-succes">Tutor Dashboard</a>
                 </div>
               </div>
             </a>
